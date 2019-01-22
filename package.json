@@ -1,0 +1,30 @@
+{
+  "name": "factory-bem-class",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha-webpack/bin/mocha-webpack --webpack-config webpack.config.js \"src/**/*.test.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricale/factory-bem-class.git"
+  },
+  "keywords": [
+    "bem"
+  ],
+  "author": "ricale",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricale/factory-bem-class/issues"
+  },
+  "homepage": "https://github.com/ricale/factory-bem-class#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "babel-loader": "^8.0.5",
+    "mocha": "^5.2.0",
+    "mocha-webpack": "^1.1.0",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1"
+  }
+}
