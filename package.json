@@ -2,7 +2,7 @@
   "name": "factory-bem-class",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/mocha-webpack/bin/mocha-webpack --webpack-config webpack.config.js \"src/**/*.test.js\""
   },
