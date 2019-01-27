@@ -1,6 +1,6 @@
 {
   "name": "factory-bem-class",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -23,8 +23,9 @@
     "@babel/core": "^7.2.2",
     "babel-loader": "^8.0.5",
     "mocha": "^5.2.0",
-    "mocha-webpack": "^1.1.0",
+    "mochapack": "^1.0.0",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.1"
-  }
+  },
+  "dependencies": {}
 }

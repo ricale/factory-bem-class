@@ -1,5 +1,5 @@
-const assert = require('assert');
-const factoryBemClass = require('../dist/index.js').default;
+import assert from 'assert';
+import {factoryBemClass} from '../dist/index.js';
 
 const blockName = 'blockName';
 const elementName = 'elementName';

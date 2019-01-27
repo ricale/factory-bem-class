@@ -18,7 +18,7 @@ const getClassName = (block, element, modifiers) =>
     modifiers
   );
 
-const factoryBemClass = block => (element, modifiers) => {
+export const factoryBemClass = block => (element, modifiers) => {
   if(!!element && typeof element === typeof {}) {
     return getClassName(
       block,
@@ -30,5 +30,3 @@ const factoryBemClass = block => (element, modifiers) => {
     return getClassName(block, element, modifiers);
   }
 };
-
-export default factoryBemClass;
