@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {factoryBemClass} from '../dist/index.js';
+import {factoryBemClass} from './index.js';
 
 const blockName = 'blockName';
 const elementName = 'elementName';
@@ -29,22 +29,22 @@ describe('factory-bem-class', function () {
 
     test(
       cn(elementName, modifierNames[0]),
-      `${blockName}__${elementName}--${modifierNames[0]}`
+      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]}`
     );
 
     test(
       cn(elementName, modifierNames),
-      `${blockName}__${elementName}--${modifierNames[0]} ${blockName}__${elementName}--${modifierNames[1]}`
+      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]} ${blockName}__${elementName}--${modifierNames[1]}`
     );
 
     test(
       cn(null, modifierNames[0]),
-      `${blockName}--${modifierNames[0]}`
+      `${blockName} ${blockName}--${modifierNames[0]}`
     );
 
     test(
       cn(null, modifierNames),
-      `${blockName}--${modifierNames[0]} ${blockName}--${modifierNames[1]}`
+      `${blockName} ${blockName}--${modifierNames[0]} ${blockName}--${modifierNames[1]}`
     );
   });
 
@@ -58,22 +58,22 @@ describe('factory-bem-class', function () {
 
     test(
       cn({element: elementName, modifier: modifierNames[0]}),
-      `${blockName}__${elementName}--${modifierNames[0]}`
+      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]}`
     );
 
     test(
       cn({element: elementName, modifiers: modifierNames}),
-      `${blockName}__${elementName}--${modifierNames[0]} ${blockName}__${elementName}--${modifierNames[1]}`
+      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]} ${blockName}__${elementName}--${modifierNames[1]}`
     );
 
     test(
       cn({modifier: modifierNames[0]}),
-      `${blockName}--${modifierNames[0]}`
+      `${blockName} ${blockName}--${modifierNames[0]}`
     );
 
     test(
       cn({modifiers: modifierNames}),
-      `${blockName}--${modifierNames[0]} ${blockName}--${modifierNames[1]}`
+      `${blockName} ${blockName}--${modifierNames[0]} ${blockName}--${modifierNames[1]}`
     );
   });
 });

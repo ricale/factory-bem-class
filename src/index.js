@@ -6,9 +6,11 @@ const getBase = (block, element) =>
 
 const getWithModifiers = (base, modifiers) => {
   if(Array.isArray(modifiers)) {
-    return modifiers.map(m => withModifier(base, m)).join(' ')
+    return `${base} ${modifiers.map(m => withModifier(base, m)).join(' ')}`;
+  } else if(modifiers) {
+    return `${base} ${withModifier(base, modifiers)}`;
   } else {
-    return withModifier(base, modifiers);
+    return base;
   }
 };
 
