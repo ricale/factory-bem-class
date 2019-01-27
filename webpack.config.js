@@ -5,6 +5,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'commonjs',
   },
   module: {
     rules: [
@@ -20,5 +21,5 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  mode: 'development',
+  mode: 'production',
 };

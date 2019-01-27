@@ -19,7 +19,7 @@ const getClassName = (block, element, modifiers) =>
   );
 
 const factoryBemClass = block => (element, modifiers) => {
-  if(typeof element === typeof {}) {
+  if(!!element && typeof element === typeof {}) {
     return getClassName(
       block,
       element.element,
