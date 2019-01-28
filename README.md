@@ -4,7 +4,7 @@
 
     yarn add factory-bem-class
 
-## Getting Started
+## Example
 
 ```javascript
 import {factoryBemClass} from 'factory-bem-class';
@@ -46,3 +46,12 @@ cn({mods: ['modifier1', 'modifier2']});
 cn({mods: {modifier1: true, modifier2: true}});
 //=> 'block block--modifier1 block--modifier2';
 ```
+
+## BEM Rule References
+
+- [BEM Introduction](http://getbem.com/introduction/) - getbem.com
+- [BEM by Example](https://seesparkbox.com/foundry/bem_by_example) - seesparkbox.com
+
+## License
+
+MIT License
