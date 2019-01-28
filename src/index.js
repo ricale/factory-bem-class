@@ -1,34 +1,41 @@
-const withModifier = (base, modifier) =>
-  modifier ? `${base}--${modifier}` : base;
+const withModifier = (base, mod) =>
+  mod ? `${base}--${mod}` : base;
 
 const getBase = (block, element) =>
   element ? `${block}__${element}` : block;
 
-const getWithModifiers = (base, modifiers) => {
-  if(Array.isArray(modifiers)) {
-    return `${base} ${modifiers.map(m => withModifier(base, m)).join(' ')}`;
-  } else if(modifiers) {
-    return `${base} ${withModifier(base, modifiers)}`;
+const withModifiersUsingObject = (base, mods) => {
+  const modifiers = Array.isArray(mods) ? mods : Object.keys(mods).filter(k => mods[k]);
+  return modifiers.map(m => withModifier(base, m)).join(' ');
+}
+
+const withModifiers = (base, mods) => {
+  if(!!mods && typeof mods === typeof {}) {
+    return `${base} ${withModifiersUsingObject(base, mods)}`;
+
+  } else if(mods) {
+    return `${base} ${withModifier(base, mods)}`;
+
   } else {
     return base;
   }
 };
 
-const getClassName = (block, element, modifiers) =>
-  getWithModifiers(
+const getClassName = (block, element, mods) =>
+  withModifiers(
     getBase(block, element),
-    modifiers
+    mods
   );
 
-export const factoryBemClass = block => (element, modifiers) => {
+export const factoryBemClass = block => (element, mods) => {
   if(!!element && typeof element === typeof {}) {
     return getClassName(
       block,
-      element.element,
-      element.modifier || element.modifiers
+      element.el,
+      element.mod || element.mods
     );
 
   } else {
-    return getClassName(block, element, modifiers);
+    return getClassName(block, element, mods);
   }
 };

@@ -1,10 +1,10 @@
 {
   "name": "factory-bem-class",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "./node_modules/mocha-webpack/bin/mocha-webpack --webpack-config webpack.config.js \"src/**/*.test.js\""
+    "test": "./node_modules/mochapack/bin/mochapack --webpack-config webpack.config.js \"src/**/*.test.js\""
   },
   "repository": {
     "type": "git",

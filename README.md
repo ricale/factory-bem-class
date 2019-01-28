@@ -14,31 +14,33 @@
     //=> 'block';
 
     cn('element');
+    cn({el: 'element'});
     //=> 'block__element';
 
     cn('element', 'modifier1');
+    cn('element', {modifier1: true});
+    cn('element', {modifier1: true, modifier2: false});
+    cn({el: 'element', mods: 'modifier1'});
+    cn({el: 'element', mods: {modifier1: true}});
+    cn({el: 'element', mods: {modifier1: true, modifier2: false}});
     //=> 'block__element block__element--modifier1';
 
     cn('element', ['modifier1', 'modifier2']);
+    cn('element', {modifier1: true, modifier2: true});
+    cn({el: 'element', mods: ['modifier1', 'modifier2']});
+    cn({el: 'element', mods: {modifier1: true, modifier2: true}});
     //=> 'block__element block__element--modifier1 block__element--modifier2';
 
     cn(null, 'modifier1');
+    cn(null, {modifier1: true});
+    cn(null, {modifier1: true, modifier2: false});
+    cn({mods: 'modifier1'});
+    cn({mods: {modifier1: true}});
+    cn({mods: {modifier1: true, modifier2: false}});
     //=> 'block block--modifier1';
 
     cn(null, ['modifier1', 'modifier2']);
-    //=> 'block block--modifier1 block--modifier2';
-
-    cn({element: 'element'});
-    //=> 'block__element';
-
-    cn({element: 'element', modifier: 'modifier1'});
-    //=> 'block__element block__element--modifier1';
-
-    cn({element: 'element', modifiers: ['modifier1', 'modifier2']});
-    //=> 'block__element block__element--modifier1 block__element--modifier2';
-
-    cn({modifier: 'modifier1'});
-    //=> 'block block--modifier1';
-
-    cn({modifiers: ['modifier1', 'modifier2']});
+    cn(null, {modifier1: true, modifier2: true});
+    cn({mods: ['modifier1', 'modifier2']});
+    cn({mods: {modifier1: true, modifier2: true}});
     //=> 'block block--modifier1 block--modifier2';

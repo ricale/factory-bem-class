@@ -1,9 +1,9 @@
 import assert from 'assert';
 import {factoryBemClass} from './index.js';
 
-const blockName = 'blockName';
-const elementName = 'elementName';
-const modifierNames = ['modifier1', 'modifier2'];
+const b = 'block';
+const e = 'element';
+const m = ['modifier1', 'modifier2'];
 
 const test = (should, expected) =>
   it(`should return ${expected}`, () =>
@@ -12,68 +12,49 @@ const test = (should, expected) =>
 
 describe('factory-bem-class', function () {
   describe('without parameter', function () {
-    const cn = factoryBemClass(blockName);
+    const cn = factoryBemClass(b);
 
-    test(
-      cn(),
-      `${blockName}`
-    );
+    test(cn(), `${b}`);
   });
-  describe('with string parameters', function () {
-    const cn = factoryBemClass(blockName);
+  describe('(string, string or stringArray)', function () {
+    const cn = factoryBemClass(b);
 
-    test(
-      cn(elementName),
-      `${blockName}__${elementName}`
-    );
-
-    test(
-      cn(elementName, modifierNames[0]),
-      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]}`
-    );
-
-    test(
-      cn(elementName, modifierNames),
-      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]} ${blockName}__${elementName}--${modifierNames[1]}`
-    );
-
-    test(
-      cn(null, modifierNames[0]),
-      `${blockName} ${blockName}--${modifierNames[0]}`
-    );
-
-    test(
-      cn(null, modifierNames),
-      `${blockName} ${blockName}--${modifierNames[0]} ${blockName}--${modifierNames[1]}`
-    );
+    test(cn(e),          `${b}__${e}`);
+    test(cn(e, m[0]),    `${b}__${e} ${b}__${e}--${m[0]}`);
+    test(cn(e, m),       `${b}__${e} ${b}__${e}--${m[0]} ${b}__${e}--${m[1]}`);
+    test(cn(null, m[0]), `${b} ${b}--${m[0]}`);
+    test(cn(null, m),    `${b} ${b}--${m[0]} ${b}--${m[1]}`);
   });
 
-  describe('with hash parameter', function () {
-    const cn = factoryBemClass(blockName);
+  describe('({el: string, mods: string or stringArray})', function () {
+    const cn = factoryBemClass(b);
 
-    test(
-      cn({element: elementName}),
-      `${blockName}__${elementName}`
-    );
+    test(cn({el: e}),             `${b}__${e}`);
+    test(cn({el: e, mods: m[0]}), `${b}__${e} ${b}__${e}--${m[0]}`);
+    test(cn({el: e, mods: m}),    `${b}__${e} ${b}__${e}--${m[0]} ${b}__${e}--${m[1]}`);
+    test(cn({mods: m[0]}),        `${b} ${b}--${m[0]}`);
+    test(cn({mods: m}),           `${b} ${b}--${m[0]} ${b}--${m[1]}`);
+  });
 
-    test(
-      cn({element: elementName, modifier: modifierNames[0]}),
-      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]}`
-    );
+  describe('(string, {modName: boolean})', function () {
+    const cn = factoryBemClass(b);
 
-    test(
-      cn({element: elementName, modifiers: modifierNames}),
-      `${blockName}__${elementName} ${blockName}__${elementName}--${modifierNames[0]} ${blockName}__${elementName}--${modifierNames[1]}`
-    );
+    test(cn(null, {[m[0]]: true}),                `${b} ${b}--${m[0]}`);
+    test(cn(null, {[m[0]]: true, [m[1]]: false}), `${b} ${b}--${m[0]}`);
+    test(cn(null, {[m[0]]: true, [m[1]]: true}),  `${b} ${b}--${m[0]} ${b}--${m[1]}`);
+    test(cn(e, {[m[0]]: true}),                   `${b}__${e} ${b}__${e}--${m[0]}`);
+    test(cn(e, {[m[0]]: true, [m[1]]: false}),    `${b}__${e} ${b}__${e}--${m[0]}`);
+    test(cn(e, {[m[0]]: true, [m[1]]: true}),     `${b}__${e} ${b}__${e}--${m[0]} ${b}__${e}--${m[1]}`);
+  });
 
-    test(
-      cn({modifier: modifierNames[0]}),
-      `${blockName} ${blockName}--${modifierNames[0]}`
-    );
+  describe('({el: string, mods: {modName: boolean}})', function () {
+    const cn = factoryBemClass(b);
 
-    test(
-      cn({modifiers: modifierNames}),
-      `${blockName} ${blockName}--${modifierNames[0]} ${blockName}--${modifierNames[1]}`
-    );
+    test(cn({mods: {[m[0]]: true}}),                       `${b} ${b}--${m[0]}`);
+    test(cn({mods: {[m[0]]: true, [m[1]]: false}}),        `${b} ${b}--${m[0]}`);
+    test(cn({mods: {[m[0]]: true, [m[1]]: true}}),         `${b} ${b}--${m[0]} ${b}--${m[1]}`);
+    test(cn({el: e, mods: {[m[0]]: true}}),                `${b}__${e} ${b}__${e}--${m[0]}`);
+    test(cn({el: e, mods: {[m[0]]: true, [m[1]]: false}}), `${b}__${e} ${b}__${e}--${m[0]}`);
+    test(cn({el: e, mods: {[m[0]]: true, [m[1]]: true}}),  `${b}__${e} ${b}__${e}--${m[0]} ${b}__${e}--${m[1]}`);
   });
 });
