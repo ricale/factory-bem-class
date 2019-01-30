@@ -27,13 +27,26 @@ const getClassName = (block, element, mods) =>
     mods
   );
 
+const getClassNameUsingObject = (block, obj) => {
+  const {el, mods, ...rest} = obj;
+
+  const restKeys = Object.keys(rest);
+  const modifiers = (
+    restKeys.length === 0 ? mods :
+    Array.isArray(mods)   ? [...mods, ...restKeys] :
+                            {...mods, ...rest}
+  );
+
+  return getClassName(
+    block,
+    el,
+    modifiers
+  );
+}
+
 export const factoryBemClass = block => (element, mods) => {
   if(!!element && typeof element === typeof {}) {
-    return getClassName(
-      block,
-      element.el,
-      element.mod || element.mods
-    );
+    return getClassNameUsingObject(block, element);
 
   } else {
     return getClassName(block, element, mods);
