@@ -22,4 +22,5 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   mode: 'production',
+  devtool: 'source-map',
 };
